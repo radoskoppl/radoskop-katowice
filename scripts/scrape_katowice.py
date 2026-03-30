@@ -2,25 +2,27 @@
 """
 Scraper danych głosowań Rady Miasta Katowice.
 
-Źródło: katowice.esesja.pl (platforma eSesja)
-eSesja ma dostęp do głosowań bez JavaScript.
+Źródło: BIP Katowice (bip.katowice.eu)
+Głosowania imienne Rady Miasta publikowane sa jako PDF na stronach sesji.
 
-Struktura eSesja:
-  1. Archiwum glosowan: https://katowice.esesja.pl/glosowania/
-     Linki do sesji w formacie /listaglosowan/{UUID}
-  2. Lista glosowan w sesji: /listaglosowan/{UUID}
-     Linki do pojedynczych glosowan /glosowanie/{ID}/{HASH}
-  3. Wyniki glosowania: /glosowanie/{ID}/{HASH}
-     div.wim > h3 (kategoria: ZA/PRZECIW/...) > div.osobaa (nazwisko)
+Struktura BIP:
+  1. Lista sesji: https://bip.katowice.eu/RadaMiasta/Sesje/default.aspx?menu=658
+     Linki do sesji: sesja.aspx?idt=XXX&menu=658
+  2. Strona sesji: sesja.aspx?idt=XXX
+     Link "IMIENNE WYNIKI GŁOSOWAŃ" -> dokument.aspx?idr=YYY
+  3. Strona dokumentu: dokument.aspx?idr=YYY
+     Linki do PDF: /SiteAssets/.../Sesja NN, Glosowanie M, Data ....pdf
+  4. Kazdy PDF zawiera: temat glosowania, liste radnych, glos kazdego radnego
 
-UWAGA: Uruchom lokalnie — sandbox Cowork blokuje domeny.
+UWAGA: Uruchom lokalnie.
 
 Użycie:
-    pip install requests beautifulsoup4 lxml
+    pip install requests beautifulsoup4 pdfplumber
     python scrape_katowice.py [--output docs/data.json] [--profiles docs/profiles.json]
 """
 
 import argparse
+import io
 import json
 import re
 import sys
@@ -33,13 +35,19 @@ from pathlib import Path
 try:
     from bs4 import BeautifulSoup
 except ImportError:
-    print("Zainstaluj: pip install beautifulsoup4 lxml")
+    print("Zainstaluj: pip install beautifulsoup4")
     sys.exit(1)
 
 try:
     import requests
 except ImportError:
     print("Zainstaluj: pip install requests")
+    sys.exit(1)
+
+try:
+    import pdfplumber
+except ImportError:
+    print("Zainstaluj: pip install pdfplumber")
     sys.exit(1)
 
 def compact_named_votes(output):
@@ -92,19 +100,19 @@ def save_split_output(output, out_path):
 # Config
 # ============================================================================
 
-ESESJA_BASE = "https://katowice.esesja.pl"
-ESESJA_VOTES_LIST = f"{ESESJA_BASE}/glosowania/"
+BIP_BASE = "https://bip.katowice.eu"
+BIP_SESSIONS = f"{BIP_BASE}/RadaMiasta/Sesje/default.aspx?menu=658"
 
 KADENCJE = {
     "2024-2029": {
-        "label": "IX kadencja (2024–2029)",
+        "label": "IX kadencja (2024\u20132029)",
         "start": "2024-05-07",
     }
 }
 
 HEADERS = {
     "User-Agent": "Radoskop/1.0 (https://katowice.radoskop.pl; kontakt@radoskop.pl)",
-    "Accept": "text/html",
+    "Accept": "text/html,application/xhtml+xml",
 }
 
 DELAY = 1.0
@@ -133,6 +141,7 @@ COUNCILORS = {
     "Mariusz Skiba": "PiS",
     "Piotr Trząski": "PiS",
     # Forum Samorządowe i Marcin Krupa - 9 members
+    "Agnieszka Piątek": "Forum",
     "Jacek Kalisz": "Forum",
     "Maciej Biskupski": "Forum",
     "Łukasz Hankus": "Forum",
@@ -140,10 +149,11 @@ COUNCILORS = {
     "Barbara Mańdok": "Forum",
     "Borys Pronobis": "Forum",
     "Maria Ryś": "Forum",
-    "Adam Skoworon": "Forum",
+    "Adam Skowron": "Forum",
     "Krzysztof Pieczyński": "Forum",
     "Roch Sobula": "Forum",
     "Damian Stępień": "Forum",
+    "Krzysztof Kraus": "Forum",
 }
 
 
@@ -175,96 +185,120 @@ def resolve_club(name: str) -> str:
     return "?"
 
 
-# Polish month name mapping
-MONTHS_PL = {
-    "stycznia": 1, "lutego": 2, "marca": 3, "kwietnia": 4,
-    "maja": 5, "czerwca": 6, "lipca": 7, "sierpnia": 8,
-    "września": 9, "października": 10, "listopada": 11, "grudnia": 12,
-}
+# Build canonical name lookup: maps any name variant to "Firstname Lastname" form.
+def _build_canonical_lookup(councilors: dict[str, str]) -> dict[str, str]:
+    lookup = {}
+    for name in councilors:
+        lookup[name] = name  # Firstname Lastname -> itself
+        parts = name.split()
+        if len(parts) >= 2:
+            # Lastname Firstname -> Firstname Lastname
+            reversed_name = f"{parts[-1]} {' '.join(parts[:-1])}"
+            lookup[reversed_name] = name
+            # Also single-swap for multi-part names
+            lookup[f"{parts[-1]} {parts[0]}"] = name
+    return lookup
+
+
+_CANONICAL = _build_canonical_lookup(COUNCILORS)
+
+
+def normalize_name(name: str) -> str:
+    """Normalize a councillor name to canonical Firstname Lastname form."""
+    if name in _CANONICAL:
+        return _CANONICAL[name]
+    # Try case-insensitive match
+    name_lower = name.lower()
+    for key, canonical in _CANONICAL.items():
+        if key.lower() == name_lower:
+            return canonical
+    # Unknown councillor: keep original form
+    return name
 
 
 # ============================================================================
-# Step 1: Fetch session list from eSesja /glosowania/ archive
+# Step 1: Fetch session list from BIP Katowice
 # ============================================================================
 
 def fetch_soup(http_session, url):
     """GET a page and return BeautifulSoup."""
     resp = http_session.get(url, headers=HEADERS, timeout=30)
     resp.raise_for_status()
-    # eSesja pages declare windows-1250 in meta charset but the HTTP header
-    # omits charset, so requests falls back to ISO-8859-1 which mangles
-    # Polish characters (ł→³, ą→¹, ę→ê, etc.)
-    if "esesja" in url:
-        resp.encoding = "windows-1250"
     return BeautifulSoup(resp.text, "html.parser")
 
 
 def fetch_session_list(http_session, debug=False):
-    """Fetch all session entries from the paginated /glosowania/ archive.
+    """Fetch council session list from BIP Katowice.
 
-    eSesja lists sessions as <a href="/listaglosowan/{UUID}"> with text like
-    "sesja Rady Miasta Katowice w dniu 20 marca 2026, godz. 11:00".
-    Pages: /glosowania/, /glosowania/2, /glosowania/3, ...
+    BIP lists sessions as links: <a href="sesja.aspx?idt=XXX&menu=658">Sesja XXVI</a>
+    with text "z dnia YYYY-MM-DD" nearby.
+    We only take sessions from the current kadencja (2024-2029).
     """
+    if debug:
+        print(f"[DEBUG] GET {BIP_SESSIONS}")
+
+    try:
+        soup = fetch_soup(http_session, BIP_SESSIONS)
+    except Exception as e:
+        print(f"  Blad pobierania listy sesji: {e}")
+        return []
+
     sessions = []
-    page = 1
+    page_text = soup.get_text()
 
-    while True:
-        url = ESESJA_VOTES_LIST if page == 1 else f"{ESESJA_VOTES_LIST}{page}"
-        if debug:
-            print(f"[DEBUG] GET {url}")
+    for a in soup.find_all("a", href=True):
+        href = a.get("href", "")
+        if "sesja.aspx" not in href or "idt=" not in href:
+            continue
 
-        try:
-            soup = fetch_soup(http_session, url)
-        except Exception as e:
-            print(f"  Blad pobierania {url}: {e}")
-            break
+        text = a.get_text(strip=True)
+        if not text.lower().startswith("sesja"):
+            continue
 
-        found_on_page = 0
-        for a in soup.find_all("a", href=True):
-            href = a["href"]
-            if "/listaglosowan/" not in href:
-                continue
+        # Extract idt parameter
+        idt_match = re.search(r'idt=(\d+)', href)
+        if not idt_match:
+            continue
+        idt = idt_match.group(1)
 
-            text = a.get_text(strip=True)
+        # Extract session number (roman)
+        num_match = re.search(r'Sesja\s+([IVXLCDM]+)', text, re.IGNORECASE)
+        number = num_match.group(1) if num_match else ""
 
-            # Extract date from "w dniu 20 marca 2026"
-            m = re.search(r'w\s+dniu\s+(\d{1,2})\s+(\w+)\s+(\d{4})', text)
-            if not m:
-                continue
+        # Find date: look for "z dnia YYYY-MM-DD" in surrounding text
+        parent = a.parent
+        if not parent:
+            continue
+        parent_text = parent.get_text()
+        date_match = re.search(r'z\s+dnia\s+(\d{4}-\d{2}-\d{2})', parent_text)
+        if not date_match:
+            # Try broader context
+            grandparent = parent.parent
+            if grandparent:
+                gp_text = grandparent.get_text()
+                date_match = re.search(r'z\s+dnia\s+(\d{4}-\d{2}-\d{2})', gp_text)
+        if not date_match:
+            continue
 
-            day = int(m.group(1))
-            month_name = m.group(2).lower()
-            year = int(m.group(3))
-            month = MONTHS_PL.get(month_name)
-            if not month:
-                continue
+        date_str = date_match.group(1)
+        session_url = href
+        if not session_url.startswith("http"):
+            session_url = f"{BIP_BASE}/RadaMiasta/Sesje/{session_url}"
 
-            date_str = f"{year}-{month:02d}-{day:02d}"
-            full_url = href if href.startswith("http") else ESESJA_BASE + href
+        sessions.append({
+            "date": date_str,
+            "url": session_url,
+            "idt": idt,
+            "title": f"Sesja {number} ({date_str})",
+            "number": number,
+        })
 
-            sessions.append({
-                "date": date_str,
-                "url": full_url,
-                "title": text,
-            })
-            found_on_page += 1
-
-        if found_on_page == 0:
-            break
-
-        # Check for next page
-        next_link = soup.find("a", href=re.compile(rf'/glosowania/{page + 1}\b'))
-        if not next_link:
-            break
-        page += 1
-
-    # Deduplicate by URL
+    # Deduplicate by idt
     seen = set()
     unique = []
     for s in sessions:
-        if s["url"] not in seen:
-            seen.add(s["url"])
+        if s["idt"] not in seen:
+            seen.add(s["idt"])
             unique.append(s)
 
     # Filter by kadencja start date
@@ -278,72 +312,175 @@ def fetch_session_list(http_session, debug=False):
 
 
 # ============================================================================
-# Step 2: Fetch votes from a session's /listaglosowan/ page, then each vote
+# Step 2: For each session, find voting PDFs and parse them
 # ============================================================================
 
 def fetch_session_votes(http_session, session_info, debug=False):
-    """Fetch /listaglosowan/UUID page, collect /glosowanie/ID/HASH links,
-    then fetch each vote detail page.
+    """Fetch a session page on BIP, find the IMIENNE WYNIKI GLOSOWAN document
+    link, then fetch that document page and collect all voting PDF links.
+    Download and parse each PDF.
     """
+    session_url = session_info["url"]
+    if debug:
+        print(f"    [DEBUG] GET {session_url}")
+
     try:
-        soup = fetch_soup(http_session, session_info["url"])
+        soup = fetch_soup(http_session, session_url)
     except Exception as e:
         print(f"    Blad pobierania sesji: {e}")
         return []
 
-    # Collect unique /glosowanie/ID/HASH links
-    seen_urls = set()
-    vote_links = []
+    # Find the "IMIENNE WYNIKI GŁOSOWAŃ" document link
+    doc_url = None
     for a in soup.find_all("a", href=True):
+        text = a.get_text(strip=True).upper()
+        if "IMIENNE" in text and "WYNIK" in text and "GŁOS" in text:
+            href = a["href"]
+            if not href.startswith("http"):
+                href = f"{BIP_BASE}/RadaMiasta/Sesje/{href}"
+            doc_url = href
+            break
+
+    if not doc_url:
+        if debug:
+            print(f"    [DEBUG] Brak linku IMIENNE WYNIKI GLOSOWAN")
+        return []
+
+    time.sleep(DELAY * 0.3)
+
+    # Fetch the document page to get PDF links
+    if debug:
+        print(f"    [DEBUG] GET {doc_url}")
+
+    try:
+        doc_soup = fetch_soup(http_session, doc_url)
+    except Exception as e:
+        print(f"    Blad pobierania dokumentu glosowan: {e}")
+        return []
+
+    # Collect PDF links
+    pdf_links = []
+    for a in doc_soup.find_all("a", href=True):
         href = a["href"]
-        if "/glosowanie/" not in href or "/listaglosowan/" in href:
+        link_text = a.get_text(strip=True)
+        if not href.lower().endswith(".pdf"):
             continue
-        url = href if href.startswith("http") else ESESJA_BASE + href
-        if url in seen_urls:
-            continue
-        seen_urls.add(url)
-        vote_links.append(url)
+        if "glosowanie" not in link_text.lower() and "głosowanie" not in link_text.lower():
+            # Also accept links in the SiteAssets/Uprawnienia path
+            if "SiteAssets" not in href and "Uprawnienia" not in href:
+                continue
+
+        full_url = href
+        if href.startswith("/"):
+            full_url = BIP_BASE + href
+
+        # Extract vote number from filename: "Sesja 25, Glosowanie 5, Data ..."
+        vote_num_match = re.search(r'Glosowanie\s+(\d+)', link_text, re.IGNORECASE)
+        vote_num = int(vote_num_match.group(1)) if vote_num_match else len(pdf_links) + 1
+
+        pdf_links.append({
+            "url": full_url,
+            "vote_num": vote_num,
+            "link_text": link_text,
+        })
 
     if debug:
-        print(f"    [DEBUG] {len(vote_links)} linkow do glosowan")
+        print(f"    [DEBUG] {len(pdf_links)} PDF z glosowaniami")
 
+    # Sort by vote number
+    pdf_links.sort(key=lambda x: x["vote_num"])
+
+    # Download and parse each PDF
     votes = []
-    for idx, url in enumerate(vote_links):
-        vote = fetch_single_vote(http_session, url, session_info, idx, debug)
+    for pdf_info in pdf_links:
+        vote = fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug)
         if vote:
             votes.append(vote)
-        time.sleep(DELAY * 0.5)
+        time.sleep(DELAY * 0.3)
 
     return votes
 
 
-def fetch_single_vote(http_session, url, session_info, vote_idx, debug=False):
-    """Fetch a single /glosowanie/ID/HASH page and parse named results.
+# ============================================================================
+# PDF vote parsing
+# ============================================================================
 
-    eSesja HTML structure:
-      <div class='wim'><h3>ZA<span class='za'> (30)</span></h3>
-        <div class='osobaa'>Surname FirstName</div>
-      </div>
-    """
+# Vote values as they appear in BIP Katowice PDFs.
+# BIP uses mixed forms: "WSTRZYMUJĘ SIĘ" (1st person), "NIEOBECNA" (feminine), etc.
+# OBECNY/OBECNA appear in attendance check votes and must be in the pattern
+# so the regex correctly splits two-column entries, even though we skip them.
+VOTE_PATTERN = re.compile(
+    r'(\d+)\.\s+'
+    r'(.+?)\s+'
+    r'(ZA|PRZECIW|WSTRZYMUJ[ĘE] SI[ĘE]|WSTRZYMA[ŁL]A? SI[ĘE]|NIEOBECN[AY]|NIEODDANY|OBECN[AY])\b'
+)
+
+VOTE_MAP = {
+    "ZA": "za",
+    "PRZECIW": "przeciw",
+    "WSTRZYMUJĘ SIĘ": "wstrzymal_sie",
+    "WSTRZYMUJE SIE": "wstrzymal_sie",
+    "WSTRZYMAŁ SIĘ": "wstrzymal_sie",
+    "WSTRZYMAŁA SIĘ": "wstrzymal_sie",
+    "WSTRZYMAL SIE": "wstrzymal_sie",
+    "NIEOBECNY": "nieobecni",
+    "NIEOBECNA": "nieobecni",
+    "NIEODDANY": "brak_glosu",
+    # OBECNY/OBECNA = present (attendance check). Mapped to None and skipped.
+    "OBECNY": None,
+    "OBECNA": None,
+}
+
+
+def fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug=False):
+    """Download a single voting PDF and parse it."""
+    url = pdf_info["url"]
+    if debug:
+        print(f"      [DEBUG] GET {url}")
+
     try:
-        soup = fetch_soup(http_session, url)
+        resp = http_session.get(url, headers=HEADERS, timeout=30)
+        resp.raise_for_status()
     except Exception as e:
         if debug:
-            print(f"    [DEBUG] Blad pobierania {url}: {e}")
+            print(f"      [DEBUG] Blad pobierania PDF: {e}")
         return None
 
-    # Extract topic from h1
-    topic = ""
-    h1 = soup.find("h1")
-    if h1:
-        topic = h1.get_text(strip=True)[:500]
-    # Clean eSesja prefixes
-    topic = re.sub(r'^Wyniki g\u0142osowania jawnego w sprawie:\s*', '', topic).strip()
-    topic = re.sub(r'^Wyniki g\u0142osowania w sprawie:?\s*', '', topic).strip()
-    topic = re.sub(r'^G\u0142osowanie\s+w\s+sprawie\s+', '', topic).strip()
-    if not topic:
-        topic = f"Glosowanie {vote_idx + 1}"
+    if b"%PDF" not in resp.content[:10]:
+        if debug:
+            print(f"      [DEBUG] Odpowiedz nie jest PDF")
+        return None
 
+    try:
+        pdf_file = io.BytesIO(resp.content)
+        with pdfplumber.open(pdf_file) as pdf:
+            if not pdf.pages:
+                return None
+            text = pdf.pages[0].extract_text() or ""
+    except Exception as e:
+        if debug:
+            print(f"      [DEBUG] Blad parsowania PDF: {e}")
+        return None
+
+    if not text:
+        return None
+
+    return parse_vote_text(text, pdf_info, session_info, debug)
+
+
+def parse_vote_text(text, pdf_info, session_info, debug=False):
+    """Parse the extracted text from a voting PDF.
+
+    PDF structure:
+      Line 1: "25 XXV sesja Rady Miasta Katowice"
+      Line 2: "Głosowanie"
+      Lines 3+: Vote number + subject (may wrap)
+      Then: "Typ głosowania jawne Data głosowania: DD.MM.YYYY HH:MM"
+      Then: counts (Liczba uprawnionych, Głosy za, etc.)
+      Then: "Uprawnieni do głosowania"
+      Then: two-column table of councillors with votes
+      Last: "Wydrukowano: ..."
+    """
     named_votes = {
         "za": [],
         "przeciw": [],
@@ -352,47 +489,69 @@ def fetch_single_vote(http_session, url, session_info, vote_idx, debug=False):
         "nieobecni": [],
     }
 
-    counts = {
-        "za": 0,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 0,
-        "nieobecni": 0,
-    }
+    # Extract topic: everything between "Głosowanie" and "Typ głosowania"
+    topic = ""
+    topic_match = re.search(
+        r'G[łl]osowanie\s*\n(.*?)Typ\s+g[łl]osowania',
+        text, re.DOTALL | re.IGNORECASE
+    )
+    if topic_match:
+        raw_topic = topic_match.group(1).strip()
+        # Clean up: remove stray vote numbers at start, join lines
+        lines = [l.strip() for l in raw_topic.split("\n") if l.strip()]
+        topic = " ".join(lines)
+        # Remove leading standalone number (vote number from PDF layout)
+        topic = re.sub(r'^\d+\s+', '', topic)
+        # Clean up multiple spaces
+        topic = re.sub(r'\s{2,}', ' ', topic).strip()
 
-    # Parse named votes from div.wim sections.
-    # Each div.wim has an h3 header (ZA/PRZECIW/...) and div.osobaa children.
-    category_map = {
-        "za": "za",
-        "przeciw": "przeciw",
-        "wstrzymuj": "wstrzymal_sie",
-        "brak g": "brak_glosu",
-        "nieobecn": "nieobecni",
-    }
+    if not topic:
+        topic = f"Glosowanie {pdf_info.get('vote_num', '?')}"
 
-    for wim in soup.find_all("div", class_="wim"):
-        h3 = wim.find("h3")
-        if not h3:
+    # Extract councillor votes from the table section
+    # Find text after "Uprawnieni do głosowania" and before "Wydrukowano"
+    table_match = re.search(
+        r'Uprawnieni\s+do\s+g[łl]osowania.*?\n(.*?)(?:Wydrukowano|$)',
+        text, re.DOTALL | re.IGNORECASE
+    )
+    if table_match:
+        table_text = table_match.group(1)
+    else:
+        # Fallback: try to find councillor entries anywhere in text
+        table_text = text
+
+    # Parse councillor entries: "1. Beata Bala ZA"
+    for m in VOTE_PATTERN.finditer(table_text):
+        name = m.group(2).strip()
+        vote_val = m.group(3).upper()
+
+        # Clean name: remove any trailing dots or numbers
+        name = re.sub(r'\s*\d+\.$', '', name).strip()
+        if not name or len(name) < 3:
             continue
-        h3_text = h3.get_text(strip=True).upper()
-        cat_key = None
-        for prefix, key in category_map.items():
-            if h3_text.upper().startswith(prefix.upper()):
-                cat_key = key
-                break
-        if not cat_key:
+
+        # Normalize to canonical Firstname Lastname form
+        name = normalize_name(name)
+
+        if vote_val in VOTE_MAP:
+            cat = VOTE_MAP[vote_val]
+            if cat is None:
+                # OBECNY/OBECNA (attendance check): skip this entry
+                continue
+        elif "WSTRZYMA" in vote_val:
+            cat = "wstrzymal_sie"
+        else:
             continue
-        for osoba in wim.find_all("div", class_="osobaa"):
-            name = osoba.get_text(strip=True)
-            if name and len(name) > 2:
-                named_votes[cat_key].append(name)
+
+        named_votes[cat].append(name)
 
     total_named = sum(len(v) for v in named_votes.values())
     if total_named == 0:
+        if debug:
+            print(f"      [DEBUG] Brak radnych w PDF (0 glosow)")
         return None
 
-    for cat in named_votes:
-        counts[cat] = len(named_votes[cat])
+    counts = {cat: len(names) for cat, names in named_votes.items()}
 
     return {
         "topic": topic[:500],
@@ -677,9 +836,9 @@ def scrape(output_path, profiles_path, debug=False, max_sessions=0):
     """Glowna funkcja scrapowania."""
     http_session = requests.Session()
 
-    print("\n=== Radoskop Katowice  Scraper glosowan (eSesja) ===")
+    print("\n=== Radoskop Katowice  Scraper glosowan (BIP) ===")
 
-    # Step 1: fetch session list from paginated /glosowania/ archive
+    # Step 1: fetch session list from BIP
     print("\n[1/3] Pobieranie listy sesji...")
     session_list = fetch_session_list(http_session, debug=debug)
 
@@ -726,23 +885,29 @@ def scrape(output_path, profiles_path, debug=False, max_sessions=0):
     print(f"\n[3/3] Budowanie danych wyjsciowych...")
     profiles = load_profiles(profiles_path)
 
-    if not profiles:
-        # Build profiles keyed by both "Firstname Lastname" and "Lastname Firstname"
-        # so lookups work regardless of name format from eSesja.
-        profiles = {}
-        for name, club in COUNCILORS.items():
-            entry = {"name": name, "club": club, "district": None}
-            profiles[name] = entry
-            parts = name.split()
-            if len(parts) >= 2:
-                profiles[f"{parts[-1]} {' '.join(parts[:-1])}"] = entry
-                profiles[f"{parts[-1]} {parts[0]}"] = entry
-        if profiles:
-            print(f"  Zaladowano profile: {len(COUNCILORS)} radnych (z listy hardcoded)")
-        else:
-            print(f"  UWAGA: Brak profili — kluby będą oznaczone jako '?'")
+    # Always merge hardcoded COUNCILORS into profiles.
+    # COUNCILORS is the authoritative source for club assignments.
+    # profiles.json may exist but have incomplete or missing club data.
+    hardcoded = {}
+    for name, club in COUNCILORS.items():
+        entry = {"name": name, "club": club, "district": None}
+        hardcoded[name] = entry
+        parts = name.split()
+        if len(parts) >= 2:
+            hardcoded[f"{parts[-1]} {' '.join(parts[:-1])}"] = entry
+            hardcoded[f"{parts[-1]} {parts[0]}"] = entry
+
+    if profiles:
+        # Merge: hardcoded fills gaps, profiles.json entries with valid clubs take priority
+        for key, entry in hardcoded.items():
+            if key not in profiles:
+                profiles[key] = entry
+            elif profiles[key].get("club", "?") == "?":
+                profiles[key]["club"] = entry["club"]
+        print(f"  Załadowano profile: {len(profiles)} radnych (profiles.json + hardcoded)")
     else:
-        print(f"  Załadowano profile: {len(profiles)} radnych")
+        profiles = hardcoded
+        print(f"  Zaladowano profile: {len(COUNCILORS)} radnych (z listy hardcoded)")
 
     # Zbuduj struktury
     kid = "2024-2029"
@@ -790,7 +955,7 @@ def scrape(output_path, profiles_path, debug=False, max_sessions=0):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Scraper Rady Miasta Katowice (eSesja)"
+        description="Scraper Rady Miasta Katowice (BIP)"
     )
     parser.add_argument(
         "--output", default="docs/data.json",
