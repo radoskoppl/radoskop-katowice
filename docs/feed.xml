@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Radoskop Katowice</title>
+  <subtitle>Aktualnosci z Rady Miasta Katowic. Glosowania, sesje, rebelie.</subtitle>
+  <link href="https://katowice.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://katowice.radoskop.pl/" rel="alternate" type="text/html"/>
+  <id>https://katowice.radoskop.pl/</id>
+  <updated>2026-03-31T13:26:20Z</updated>
+  <author>
+    <name>Radoskop</name>
+    <uri>https://radoskop.pl</uri>
+  </author>
+  <entry>
+    <title>Sesja  Rady Miasta Katowice</title>
+    <link href="https://katowice.radoskop.pl/sesja//" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/sesja//</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">23 glosowan. 22 odrzuconych. 22 kontrowersyjnych. 28 obecnych radnych.</summary>
+    <category term="session"/>
+  </entry>
+  <entry>
+    <title>Barbara Wnęk-Gabor (KO) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/barbara-wnek-gabor/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/barbara-wnek-gabor/</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">wstrzymal_sie zamiast za w sprawie: 23. Rozpatrzenie projektu uchwały w sprawie zmian w Wieloletniej Prognozie Finansowej 20 miasta Kato</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Krystyna Panek (PiS) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/krystyna-panek/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/krystyna-panek/</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">wstrzymal_sie zamiast za w sprawie: 28. Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na oddanie w dzierżawę lub 30 najem w dr</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Piotr Trząski (PiS) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/piotr-trzaski/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/piotr-trzaski/</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">wstrzymal_sie zamiast za w sprawie: 26. Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na oddanie w dzierżawę lub najem w drodz</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Kontrowersyjne glosowanie: 6a. Głosowanie nad poprawką do projektu uchwały. Wniosek Pana Radnego Leszka 8 P</title>
+    <link href="https://katowice.radoskop.pl/glosowanie/2025-12-18_007_000/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/glosowanie/2025-12-18_007_000/</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: odrzucone (za 1, przeciw 26, wstrzym. 0). Sesja .</summary>
+    <category term="controversial_vote"/>
+  </entry>
+  <entry>
+    <title>Kontrowersyjne glosowanie: 7. Poprawka do projektu uchwały wniesiona przez Radnego Leszka Piechotę.</title>
+    <link href="https://katowice.radoskop.pl/glosowanie/2025-12-18_009_000/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/glosowanie/2025-12-18_009_000/</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: odrzucone (za 1, przeciw 21, wstrzym. 4). Sesja .</summary>
+    <category term="controversial_vote"/>
+  </entry>
+  <entry>
+    <title>Kontrowersyjne glosowanie: 7. Poprawka 2 do projektu uchwały wniesiona przez Radnego Leszka Piechotę.</title>
+    <link href="https://katowice.radoskop.pl/glosowanie/2025-12-18_010_000/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/glosowanie/2025-12-18_010_000/</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: odrzucone (za 2, przeciw 22, wstrzym. 3). Sesja .</summary>
+    <category term="controversial_vote"/>
+  </entry>
+  <entry>
+    <title>Kontrowersyjne glosowanie: 10. Zgłoszenie poprawki do projektu uchwały - Pan Leszek Piechota.</title>
+    <link href="https://katowice.radoskop.pl/glosowanie/2025-12-18_014_000/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/glosowanie/2025-12-18_014_000/</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: odrzucone (za 5, przeciw 23, wstrzym. 0). Sesja .</summary>
+    <category term="controversial_vote"/>
+  </entry>
+  <entry>
+    <title>Kontrowersyjne glosowanie: 5. Wniosek o przerw ę w obradach</title>
+    <link href="https://katowice.radoskop.pl/glosowanie/2025-07-24_004_000/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/glosowanie/2025-07-24_004_000/</id>
+    <published>2025-07-24T12:00:00+01:00</published>
+    <updated>2025-07-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: odrzucone (za 2, przeciw 24, wstrzym. 1). Sesja .</summary>
+    <category term="controversial_vote"/>
+  </entry>
+  <entry>
+    <title>Piotr Pietrasz (PiS) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/piotr-pietrasz/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/piotr-pietrasz/</id>
+    <published>2025-07-24T12:00:00+01:00</published>
+    <updated>2025-07-24T12:00:00+01:00</updated>
+    <summary type="html">przeciw zamiast za w sprawie: 5. Wniosek o przerw ę w obradach</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Mariusz Skiba (PiS) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/mariusz-skiba/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/mariusz-skiba/</id>
+    <published>2025-06-26T12:00:00+01:00</published>
+    <updated>2025-06-26T12:00:00+01:00</updated>
+    <summary type="html">za zamiast wstrzymal_sie w sprawie: 11a. Rozpatrzenie projektu uchwały w sprawie rozpatrzenia i zatwierdzenia sprawozdania 9 finansowego</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Roch Sobula (Forum) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/roch-sobula/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/roch-sobula/</id>
+    <published>2025-04-28T12:00:00+01:00</published>
+    <updated>2025-04-28T12:00:00+01:00</updated>
+    <summary type="html">wstrzymal_sie zamiast za w sprawie: 38. Rozpatrzenie projektu uchwały zmieniającej uchwalę w sprawie desygnowania radnych 32 Rady Miasta</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Kontrowersyjne glosowanie: 9a. wniosek o powtórne przeliczenie głosów</title>
+    <link href="https://katowice.radoskop.pl/glosowanie/2025-01-23_017_000/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/glosowanie/2025-01-23_017_000/</id>
+    <published>2025-01-23T12:00:00+01:00</published>
+    <updated>2025-01-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: odrzucone (za 5, przeciw 23, wstrzym. 0). Sesja .</summary>
+    <category term="controversial_vote"/>
+  </entry>
+  <entry>
+    <title>Beata Bala (KO) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/beata-bala/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/beata-bala/</id>
+    <published>2025-01-23T12:00:00+01:00</published>
+    <updated>2025-01-23T12:00:00+01:00</updated>
+    <summary type="html">za zamiast przeciw w sprawie: 9a. wniosek o powtórne przeliczenie głosów</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Jacek Kalisz (Forum) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/jacek-kalisz/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/jacek-kalisz/</id>
+    <published>2025-01-23T12:00:00+01:00</published>
+    <updated>2025-01-23T12:00:00+01:00</updated>
+    <summary type="html">za zamiast przeciw w sprawie: 9a. wniosek o powtórne przeliczenie głosów</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Leszek Piechota (PiS) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/leszek-piechota/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/leszek-piechota/</id>
+    <published>2024-12-19T12:00:00+01:00</published>
+    <updated>2024-12-19T12:00:00+01:00</updated>
+    <summary type="html">wstrzymal_sie zamiast za w sprawie: 13. Rozpatrzenie projektu uchwały w sprawie regulaminu targowisk miejskich w 11 Katowicach zlokalizo</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Adam Skowron (Forum) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/adam-skowron/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/adam-skowron/</id>
+    <published>2024-11-21T12:00:00+01:00</published>
+    <updated>2024-11-21T12:00:00+01:00</updated>
+    <summary type="html">wstrzymal_sie zamiast za w sprawie: 2. Powołanie sekretarzy sesji.</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Jednoglosnie odrzucone: 5. Wniosek formalny o wprowadzenie poiprawki</title>
+    <link href="https://katowice.radoskop.pl/glosowanie/2024-10-24_003_000/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/glosowanie/2024-10-24_003_000/</id>
+    <published>2024-10-24T12:00:00+01:00</published>
+    <updated>2024-10-24T12:00:00+01:00</updated>
+    <summary type="html">Wszyscy glosujacy (przeciw 25) odrzucili uchwale.</summary>
+    <category term="unanimous_reject"/>
+  </entry>
+  <entry>
+    <title>11 radnych glosowalo wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/</id>
+    <published>2024-09-26T12:00:00+01:00</published>
+    <updated>2024-09-26T12:00:00+01:00</updated>
+    <summary type="html">Barbara Wnęk-Gabor, Elżbieta Grodzka-Łopuszyńska, Krystyna Panek, Leszek Piechota, Magdalena Skwarek, Magdalena Wieczorek, Mariusz Skiba, Patryk Białas.... Sesja z 2024-09-26.</summary>
+    <category term="rebellion_summary"/>
+  </entry>
+  <entry>
+    <title>Kontrowersyjne glosowanie: 25b. Głosowanie poprawki do projektu uchwaly zgłoszonej przez radnego Leszka Pie</title>
+    <link href="https://katowice.radoskop.pl/glosowanie/2024-07-25_031_000/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/glosowanie/2024-07-25_031_000/</id>
+    <published>2024-07-25T12:00:00+01:00</published>
+    <updated>2024-07-25T12:00:00+01:00</updated>
+    <summary type="html">Wynik: odrzucone (za 5, przeciw 22, wstrzym. 1). Sesja .</summary>
+    <category term="controversial_vote"/>
+  </entry>
+  <entry>
+    <title>Łukasz Hankus (Forum) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/lukasz-hankus/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/lukasz-hankus/</id>
+    <published>2024-06-20T12:00:00+01:00</published>
+    <updated>2024-06-20T12:00:00+01:00</updated>
+    <summary type="html">wstrzymal_sie zamiast za w sprawie: 19c. Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie wyboru 35 przewodniczących i wicep</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Kontrowersyjne glosowanie: 7. Poprawka dotycząca uchwały - akces do pracy komisji Pana Radnego Leszka Piech</title>
+    <link href="https://katowice.radoskop.pl/glosowanie/2024-05-14_005_000/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/glosowanie/2024-05-14_005_000/</id>
+    <published>2024-05-14T12:00:00+01:00</published>
+    <updated>2024-05-14T12:00:00+01:00</updated>
+    <summary type="html">Wynik: odrzucone (za 5, przeciw 22, wstrzym. 1). Sesja .</summary>
+    <category term="controversial_vote"/>
+  </entry>
+  <entry>
+    <title>Borys Pronobis (Forum) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/borys-pronobis/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/borys-pronobis/</id>
+    <published>2024-05-14T12:00:00+01:00</published>
+    <updated>2024-05-14T12:00:00+01:00</updated>
+    <summary type="html">wstrzymal_sie zamiast przeciw w sprawie: 7. Poprawka dotycząca uchwały - akces do pracy komisji Pana Radnego Leszka Piechoty</summary>
+    <category term="rebellion"/>
+  </entry>
+  <entry>
+    <title>Krzysztof Kraus (Forum) zaglosowal/a wbrew klubowi</title>
+    <link href="https://katowice.radoskop.pl/profil/krzysztof-kraus/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/krzysztof-kraus/</id>
+    <published>2024-05-14T12:00:00+01:00</published>
+    <updated>2024-05-14T12:00:00+01:00</updated>
+    <summary type="html">wstrzymal_sie zamiast za w sprawie: 14. Rozpatrzenie projektu uchwały w sprawie powołania Miejskiej Komisji Wyborczej 15 Młodzieżowej Ra</summary>
+    <category term="rebellion"/>
+  </entry>
+</feed>
