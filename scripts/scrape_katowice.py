@@ -22,6 +22,7 @@ Użycie:
 """
 
 import argparse
+import hashlib
 import io
 import json
 import re
@@ -315,7 +316,7 @@ def fetch_session_list(http_session, debug=False):
 # Step 2: For each session, find voting PDFs and parse them
 # ============================================================================
 
-def fetch_session_votes(http_session, session_info, debug=False):
+def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None):
     """Fetch a session page on BIP, find the IMIENNE WYNIKI GLOSOWAN document
     link, then fetch that document page and collect all voting PDF links.
     Download and parse each PDF.
@@ -393,7 +394,7 @@ def fetch_session_votes(http_session, session_info, debug=False):
     # Download and parse each PDF
     votes = []
     for pdf_info in pdf_links:
-        vote = fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug)
+        vote = fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug, pdf_dir=pdf_dir)
         if vote:
             votes.append(vote)
         time.sleep(DELAY * 0.3)
@@ -432,27 +433,49 @@ VOTE_MAP = {
 }
 
 
-def fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug=False):
-    """Download a single voting PDF and parse it."""
+def _pdf_cache_path(url, pdf_dir):
+    """Return cache file path for a PDF URL."""
+    if not pdf_dir:
+        return None
+    h = hashlib.md5(url.encode()).hexdigest()[:12]
+    safe = re.sub(r'[^a-zA-Z0-9_.-]', '_', url.split('/')[-1])[:60]
+    return Path(pdf_dir) / f"{h}_{safe}"
+
+
+def fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug=False, pdf_dir=None):
+    """Download a single voting PDF and parse it. Uses disk cache if pdf_dir set."""
     url = pdf_info["url"]
-    if debug:
-        print(f"      [DEBUG] GET {url}")
+    cache_file = _pdf_cache_path(url, pdf_dir)
+
+    # Try disk cache first
+    if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
+        if debug:
+            print(f"      [DEBUG] CACHE HIT {cache_file.name}")
+        pdf_bytes = cache_file.read_bytes()
+    else:
+        if debug:
+            print(f"      [DEBUG] GET {url}")
+        try:
+            resp = http_session.get(url, headers=HEADERS, timeout=30)
+            resp.raise_for_status()
+        except Exception as e:
+            if debug:
+                print(f"      [DEBUG] Blad pobierania PDF: {e}")
+            return None
+
+        pdf_bytes = resp.content
+        if b"%PDF" not in pdf_bytes[:10]:
+            if debug:
+                print(f"      [DEBUG] Odpowiedz nie jest PDF")
+            return None
+
+        # Save to disk cache
+        if cache_file:
+            cache_file.parent.mkdir(parents=True, exist_ok=True)
+            cache_file.write_bytes(pdf_bytes)
 
     try:
-        resp = http_session.get(url, headers=HEADERS, timeout=30)
-        resp.raise_for_status()
-    except Exception as e:
-        if debug:
-            print(f"      [DEBUG] Blad pobierania PDF: {e}")
-        return None
-
-    if b"%PDF" not in resp.content[:10]:
-        if debug:
-            print(f"      [DEBUG] Odpowiedz nie jest PDF")
-        return None
-
-    try:
-        pdf_file = io.BytesIO(resp.content)
+        pdf_file = io.BytesIO(pdf_bytes)
         with pdfplumber.open(pdf_file) as pdf:
             if not pdf.pages:
                 return None
@@ -832,7 +855,7 @@ def build_profiles_json(output: dict, profiles_path: str):
 # Main
 # ============================================================================
 
-def scrape(output_path, profiles_path, debug=False, max_sessions=0):
+def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None):
     """Glowna funkcja scrapowania."""
     http_session = requests.Session()
 
@@ -857,7 +880,7 @@ def scrape(output_path, profiles_path, debug=False, max_sessions=0):
 
     for i, session_info in enumerate(session_list):
         print(f"  [{i+1}/{len(session_list)}] {session_info['date']}  {session_info.get('title', '')[:60]}")
-        session_votes = fetch_session_votes(http_session, session_info, debug=debug)
+        session_votes = fetch_session_votes(http_session, session_info, debug=debug, pdf_dir=pdf_dir)
 
         for idx, vote_detail in enumerate(session_votes):
             vote_id = f"{session_info['date']}_{idx:03d}_000"
@@ -973,6 +996,10 @@ def main():
         "--max-sessions", type=int, default=0,
         help="Maks. sesji (0=wszystkie)"
     )
+    parser.add_argument(
+        "--pdf-dir", default=None,
+        help="Katalog cache PDF (pomija ponowne pobieranie)"
+    )
     args = parser.parse_args()
 
     scrape(
@@ -980,6 +1007,7 @@ def main():
         profiles_path=args.profiles,
         debug=args.debug,
         max_sessions=args.max_sessions,
+        pdf_dir=args.pdf_dir,
     )
 
 
