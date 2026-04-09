@@ -5,7 +5,7 @@
   <link href="https://katowice.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://katowice.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://katowice.radoskop.pl/</id>
-  <updated>2026-04-05T13:46:09Z</updated>
+  <updated>2026-04-09T03:19:49Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -17,6 +17,70 @@
     <published>2029-07-15T12:00:00+01:00</published>
     <updated>2029-07-15T12:00:00+01:00</updated>
     <summary type="html">Tomasz Maśnica. wzmożonej kontroli Straży Miejskiej i Policji w rejonie Sklepu Nocnego oraz Placu Miast Partnerskich przy ul. Koszalińskiej w Ligocie.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: weryfikacji możliwości doświetlenia przejścia między ulicami Śląską i Harcerską.</title>
+    <link href="https://katowice.radoskop.pl/profil/roch-sobula/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/roch-sobula/#interpelacja</id>
+    <published>2026-04-08T12:00:00+01:00</published>
+    <updated>2026-04-08T12:00:00+01:00</updated>
+    <summary type="html">Roch Sobula. weryfikacji możliwości doświetlenia przejścia między ulicami Śląską i Harcerską.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: zmianę przebiegu tras autokarów rejsowych wyjeżdżających z dworca przy ul. Sądowej, tak by były kier</title>
+    <link href="https://katowice.radoskop.pl/profil/adam-skowron/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/adam-skowron/#interpelacja</id>
+    <published>2026-04-07T12:00:00+01:00</published>
+    <updated>2026-04-07T12:00:00+01:00</updated>
+    <summary type="html">Adam Skowron. zmianę przebiegu tras autokarów rejsowych wyjeżdżających z dworca przy ul. Sądowej, tak by były kierowane na Drogową Trasę Średnicową, a nie na ul. Mi</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: Pilnego remontu odcinka chodnika oraz poprawy odwodnienia w rejonie ulicy Bytkowskiej (posesje nr 79</title>
+    <link href="https://katowice.radoskop.pl/profil/lukasz-hankus/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/lukasz-hankus/#interpelacja</id>
+    <published>2026-04-07T12:00:00+01:00</published>
+    <updated>2026-04-07T12:00:00+01:00</updated>
+    <summary type="html">Łukasz Hankus. Pilnego remontu odcinka chodnika oraz poprawy odwodnienia w rejonie ulicy Bytkowskiej (posesje nr 79 i 81).</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: zabezpieczenia przejścia dla pieszych przy szkole na ulicy Sobańskiego.</title>
+    <link href="https://katowice.radoskop.pl/profil/adam-lejman-gaska/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/adam-lejman-gaska/#interpelacja</id>
+    <published>2026-04-07T12:00:00+01:00</published>
+    <updated>2026-04-07T12:00:00+01:00</updated>
+    <summary type="html">Adam Lejman-Gąska. zabezpieczenia przejścia dla pieszych przy szkole na ulicy Sobańskiego.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: naprawy uszkodzonego chodnika w okolicy ulicy Dębowej 73</title>
+    <link href="https://katowice.radoskop.pl/profil/piotr-pietrasz/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/piotr-pietrasz/#interpelacja</id>
+    <published>2026-04-02T12:00:00+01:00</published>
+    <updated>2026-04-02T12:00:00+01:00</updated>
+    <summary type="html">Piotr Pietrasz. naprawy uszkodzonego chodnika w okolicy ulicy Dębowej 73</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: konieczności podjęcia działań wobec zniszczonego budynku przy ul. gen. Józefa Hallera 28 w Katowicac</title>
+    <link href="https://katowice.radoskop.pl/profil/maria-rys/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/maria-rys/#interpelacja</id>
+    <published>2026-03-31T12:00:00+01:00</published>
+    <updated>2026-03-31T12:00:00+01:00</updated>
+    <summary type="html">Maria Ryś. konieczności podjęcia działań wobec zniszczonego budynku przy ul. gen. Józefa Hallera 28 w Katowicach</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: spotkania z mieszkańcami dotyczącego rozwiązań drogowych w rejonie ulic: Jankego, Fabrycznej i Leśne</title>
+    <link href="https://katowice.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/interpelacje/#interpelacja</id>
+    <published>2026-03-30T12:00:00+01:00</published>
+    <updated>2026-03-30T12:00:00+01:00</updated>
+    <summary type="html">Adam Lejman-Gąska
+Maria Ryś. spotkania z mieszkańcami dotyczącego rozwiązań drogowych w rejonie ulic: Jankego, Fabrycznej i Leśnej</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -227,50 +291,6 @@
     <category term="vote"/>
   </entry>
   <entry>
-    <title>Interpelacja: dostawienia 4 ławek w Parku Powstańców Śląskich.</title>
-    <link href="https://katowice.radoskop.pl/profil/adam-skowron/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/adam-skowron/#interpelacja</id>
-    <published>2026-03-24T12:00:00+01:00</published>
-    <updated>2026-03-24T12:00:00+01:00</updated>
-    <summary type="html">Adam Skowron. dostawienia 4 ławek w Parku Powstańców Śląskich.</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: przejścia dla pieszych na ulicy Uniczowskiej – okolice Hortensji</title>
-    <link href="https://katowice.radoskop.pl/profil/adam-lejman-gaska/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/adam-lejman-gaska/#interpelacja</id>
-    <published>2026-03-23T12:00:00+01:00</published>
-    <updated>2026-03-23T12:00:00+01:00</updated>
-    <summary type="html">Adam Lejman-Gąska. przejścia dla pieszych na ulicy Uniczowskiej – okolice Hortensji</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: odnowienia infrastruktury na skwerze przy ul. Wczasowej 2.</title>
-    <link href="https://katowice.radoskop.pl/profil/roch-sobula/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/roch-sobula/#interpelacja</id>
-    <published>2026-03-17T12:00:00+01:00</published>
-    <updated>2026-03-17T12:00:00+01:00</updated>
-    <summary type="html">Roch Sobula. odnowienia infrastruktury na skwerze przy ul. Wczasowej 2.</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Zapytanie: o upamiętnienie w przestrzeni miejskiej osoby prof. Bożeny Hager-Małeckiej</title>
-    <link href="https://katowice.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/interpelacje/#interpelacja</id>
-    <published>2026-03-10T12:00:00+01:00</published>
-    <updated>2026-03-10T12:00:00+01:00</updated>
-    <summary type="html">Barbara Mańdok
-Krzysztof Pieczyński
-Borys Pronobis
-Maria Ryś
-Adam Skowron
-Damian Stępień
-Łukasz Hankus
-Agnieszka Piątek
-Roch Sobula. o upamiętnienie w przestrzeni miejskiej osoby prof. Bożeny Hager-Małeckiej</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
     <title>Interpelacja: uwzględnienia w projekcie planu ogólnego miasta Katowice wytycznych chroniących interesy mieszkańców</title>
     <link href="https://katowice.radoskop.pl/profil/leszek-piechota/" rel="alternate" type="text/html"/>
     <id>https://katowice.radoskop.pl/profil/leszek-piechota/#interpelacja</id>
@@ -286,15 +306,6 @@ Roch Sobula. o upamiętnienie w przestrzeni miejskiej osoby prof. Bożeny Hager-
     <published>2026-03-09T12:00:00+01:00</published>
     <updated>2026-03-09T12:00:00+01:00</updated>
     <summary type="html">Barbara Mańdok. poprawy bezpieczeństwa na ul. Gospodarczej / Nowy Nikiszowiec/ poprzez montaż progu zwalniającego (wyniesienia) na przejściu ulicznym na nowo wybudowa</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: utworzenia dodatkowych miejsc parkingowych w rejonie Miejskiego Domu Kultury „Szopienice – Giszowiec</title>
-    <link href="https://katowice.radoskop.pl/profil/maria-rys/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/maria-rys/#interpelacja</id>
-    <published>2026-03-08T12:00:00+01:00</published>
-    <updated>2026-03-08T12:00:00+01:00</updated>
-    <summary type="html">Maria Ryś. utworzenia dodatkowych miejsc parkingowych w rejonie Miejskiego Domu Kultury „Szopienice – Giszowiec” przy ul. Hallera 28 w Katowicach</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -475,15 +486,6 @@ Roch Sobula. o upamiętnienie w przestrzeni miejskiej osoby prof. Bożeny Hager-
     <published>2026-02-04T12:00:00+01:00</published>
     <updated>2026-02-04T12:00:00+01:00</updated>
     <summary type="html">Ewa Sadkowska. likwidacji jemioł w Parku Kościuszki.</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: wydłużenia kursów i ustanowienia przystanku dla wsiadających i wysiadających na pętli przy ulicy Kon</title>
-    <link href="https://katowice.radoskop.pl/profil/lukasz-hankus/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/lukasz-hankus/#interpelacja</id>
-    <published>2026-02-02T12:00:00+01:00</published>
-    <updated>2026-02-02T12:00:00+01:00</updated>
-    <summary type="html">Łukasz Hankus. wydłużenia kursów i ustanowienia przystanku dla wsiadających i wysiadających na pętli przy ulicy Konduktorskiej.</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -907,15 +909,6 @@ Roch Sobula. o upamiętnienie w przestrzeni miejskiej osoby prof. Bożeny Hager-
     <published>2025-12-18T12:00:00+01:00</published>
     <updated>2025-12-18T12:00:00+01:00</updated>
     <summary type="html">Wynik: odrzucone (za 1, przeciw 21, wstrzym. 4). Sesja .</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>7. Poprawka 2 do projektu uchwały wniesiona przez Radnego Leszka Piechotę.</title>
-    <link href="https://katowice.radoskop.pl/glosowanie/2025-12-18_010_000/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/glosowanie/2025-12-18_010_000/#vote</id>
-    <published>2025-12-18T12:00:00+01:00</published>
-    <updated>2025-12-18T12:00:00+01:00</updated>
-    <summary type="html">Wynik: odrzucone (za 2, przeciw 22, wstrzym. 3). Sesja .</summary>
     <category term="vote"/>
   </entry>
 </feed>
