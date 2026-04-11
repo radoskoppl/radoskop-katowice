@@ -5,7 +5,7 @@
   <link href="https://katowice.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://katowice.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://katowice.radoskop.pl/</id>
-  <updated>2026-04-09T03:19:49Z</updated>
+  <updated>2026-04-11T08:47:50Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -17,6 +17,24 @@
     <published>2029-07-15T12:00:00+01:00</published>
     <updated>2029-07-15T12:00:00+01:00</updated>
     <summary type="html">Tomasz Maśnica. wzmożonej kontroli Straży Miejskiej i Policji w rejonie Sklepu Nocnego oraz Placu Miast Partnerskich przy ul. Koszalińskiej w Ligocie.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: doposażenia terenu przy mini boisku na Nowym Nikiszowcu, ul. Gospodarcza w elementy malej architektu</title>
+    <link href="https://katowice.radoskop.pl/profil/barbara-mandok/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/barbara-mandok/#interpelacja</id>
+    <published>2026-04-09T12:00:00+01:00</published>
+    <updated>2026-04-09T12:00:00+01:00</updated>
+    <summary type="html">Barbara Mańdok. doposażenia terenu przy mini boisku na Nowym Nikiszowcu, ul. Gospodarcza w elementy malej architektury oraz montaż dwóch lamp oświetleniowych.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: jednoznacznego uwzględnienia w projekcie planu ogólnego miasta Katowice wytycznych chroniących inter</title>
+    <link href="https://katowice.radoskop.pl/profil/leszek-piechota/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/leszek-piechota/#interpelacja</id>
+    <published>2026-04-09T12:00:00+01:00</published>
+    <updated>2026-04-09T12:00:00+01:00</updated>
+    <summary type="html">Leszek Piechota. jednoznacznego uwzględnienia w projekcie planu ogólnego miasta Katowice wytycznych chroniących interesy obecnych mieszkańców w kontekście potencjalnyc</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -289,24 +307,6 @@ Maria Ryś. spotkania z mieszkańcami dotyczącego rozwiązań drogowych w rejon
     <updated>2026-03-26T12:00:00+01:00</updated>
     <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
     <category term="vote"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: uwzględnienia w projekcie planu ogólnego miasta Katowice wytycznych chroniących interesy mieszkańców</title>
-    <link href="https://katowice.radoskop.pl/profil/leszek-piechota/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/leszek-piechota/#interpelacja</id>
-    <published>2026-03-10T12:00:00+01:00</published>
-    <updated>2026-03-10T12:00:00+01:00</updated>
-    <summary type="html">Leszek Piechota. uwzględnienia w projekcie planu ogólnego miasta Katowice wytycznych chroniących interesy mieszkańców w kontekście eskalacji konfliktu na Bliskim Wscho</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: poprawy bezpieczeństwa na ul. Gospodarczej / Nowy Nikiszowiec/ poprzez montaż progu zwalniającego (w</title>
-    <link href="https://katowice.radoskop.pl/profil/barbara-mandok/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/barbara-mandok/#interpelacja</id>
-    <published>2026-03-09T12:00:00+01:00</published>
-    <updated>2026-03-09T12:00:00+01:00</updated>
-    <summary type="html">Barbara Mańdok. poprawy bezpieczeństwa na ul. Gospodarczej / Nowy Nikiszowiec/ poprzez montaż progu zwalniającego (wyniesienia) na przejściu ulicznym na nowo wybudowa</summary>
-    <category term="interpelacja"/>
   </entry>
   <entry>
     <title>Interpelacja: montażu progu zwalniającego i wyznaczenie przejścia dla pieszych na ul. Zawiszy Czarnego.</title>
