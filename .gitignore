@@ -1,3 +1,6 @@
 .venv
 *.pyc
-.DS_Storedocs/raporty/
+__pycache__
+.DS_Store
+*.pdf
+docs/raporty/
