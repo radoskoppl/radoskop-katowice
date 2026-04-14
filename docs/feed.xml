@@ -5,7 +5,7 @@
   <link href="https://katowice.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://katowice.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://katowice.radoskop.pl/</id>
-  <updated>2026-04-13T05:14:06Z</updated>
+  <updated>2026-04-14T13:51:27Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -20,12 +20,40 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: doposażenia terenu przy mini boisku na Nowym Nikiszowcu, ul. Gospodarcza w elementy malej architektu</title>
+    <title>Interpelacja: zatoki autobusowej na ulicy Śląskiej.</title>
+    <link href="https://katowice.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/interpelacje/#interpelacja</id>
+    <published>2026-04-14T12:00:00+01:00</published>
+    <updated>2026-04-14T12:00:00+01:00</updated>
+    <summary type="html">Adam Lejman-Gąska
+Tomasz Maśnica. zatoki autobusowej na ulicy Śląskiej.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: zapewnienia stałego dostępu do drogi dojazdowej i parkingu przy Szkole Podstawowej nr 54 w Katowicac</title>
     <link href="https://katowice.radoskop.pl/profil/barbara-mandok/" rel="alternate" type="text/html"/>
     <id>https://katowice.radoskop.pl/profil/barbara-mandok/#interpelacja</id>
-    <published>2026-04-09T12:00:00+01:00</published>
-    <updated>2026-04-09T12:00:00+01:00</updated>
-    <summary type="html">Barbara Mańdok. doposażenia terenu przy mini boisku na Nowym Nikiszowcu, ul. Gospodarcza w elementy malej architektury oraz montaż dwóch lamp oświetleniowych.</summary>
+    <published>2026-04-14T12:00:00+01:00</published>
+    <updated>2026-04-14T12:00:00+01:00</updated>
+    <summary type="html">Barbara Mańdok. zapewnienia stałego dostępu do drogi dojazdowej i parkingu przy Szkole Podstawowej nr 54 w Katowicach- Giszowcu</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: stanu technicznego zatok autobusowych w dzielnicach Giszowiec oraz Janów–Nikiszowiec.</title>
+    <link href="https://katowice.radoskop.pl/profil/maria-rys/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/maria-rys/#interpelacja</id>
+    <published>2026-04-13T12:00:00+01:00</published>
+    <updated>2026-04-13T12:00:00+01:00</updated>
+    <summary type="html">Maria Ryś. stanu technicznego zatok autobusowych w dzielnicach Giszowiec oraz Janów–Nikiszowiec.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: szykan na ulicy Braci Wieczorków.</title>
+    <link href="https://katowice.radoskop.pl/profil/adam-lejman-gaska/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/adam-lejman-gaska/#interpelacja</id>
+    <published>2026-04-10T12:00:00+01:00</published>
+    <updated>2026-04-10T12:00:00+01:00</updated>
+    <summary type="html">Adam Lejman-Gąska. szykan na ulicy Braci Wieczorków.</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -65,40 +93,12 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: zabezpieczenia przejścia dla pieszych przy szkole na ulicy Sobańskiego.</title>
-    <link href="https://katowice.radoskop.pl/profil/adam-lejman-gaska/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/adam-lejman-gaska/#interpelacja</id>
-    <published>2026-04-07T12:00:00+01:00</published>
-    <updated>2026-04-07T12:00:00+01:00</updated>
-    <summary type="html">Adam Lejman-Gąska. zabezpieczenia przejścia dla pieszych przy szkole na ulicy Sobańskiego.</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
     <title>Interpelacja: naprawy uszkodzonego chodnika w okolicy ulicy Dębowej 73</title>
     <link href="https://katowice.radoskop.pl/profil/piotr-pietrasz/" rel="alternate" type="text/html"/>
     <id>https://katowice.radoskop.pl/profil/piotr-pietrasz/#interpelacja</id>
     <published>2026-04-02T12:00:00+01:00</published>
     <updated>2026-04-02T12:00:00+01:00</updated>
     <summary type="html">Piotr Pietrasz. naprawy uszkodzonego chodnika w okolicy ulicy Dębowej 73</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: konieczności podjęcia działań wobec zniszczonego budynku przy ul. gen. Józefa Hallera 28 w Katowicac</title>
-    <link href="https://katowice.radoskop.pl/profil/maria-rys/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/maria-rys/#interpelacja</id>
-    <published>2026-03-31T12:00:00+01:00</published>
-    <updated>2026-03-31T12:00:00+01:00</updated>
-    <summary type="html">Maria Ryś. konieczności podjęcia działań wobec zniszczonego budynku przy ul. gen. Józefa Hallera 28 w Katowicach</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: spotkania z mieszkańcami dotyczącego rozwiązań drogowych w rejonie ulic: Jankego, Fabrycznej i Leśne</title>
-    <link href="https://katowice.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/interpelacje/#interpelacja</id>
-    <published>2026-03-30T12:00:00+01:00</published>
-    <updated>2026-03-30T12:00:00+01:00</updated>
-    <summary type="html">Adam Lejman-Gąska
-Maria Ryś. spotkania z mieszkańcami dotyczącego rozwiązań drogowych w rejonie ulic: Jankego, Fabrycznej i Leśnej</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

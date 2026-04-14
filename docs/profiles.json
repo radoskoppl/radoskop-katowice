@@ -831,6 +831,209 @@
               "topic": "9a. Wniosek formalny o zwiększenie czasu i ilości wystąpień dyskutantów.",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2025-01-23_017_000",
+              "session": "2025-01-23",
+              "topic": "9a. wniosek o powtórne przeliczenie głosów",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2025-01-23_034_000",
+              "session": "2025-01-23",
+              "topic": "23c. Rozpatrzenie projektu w sprawie desygnowania przedstawicieli Rady Miasta Katowice 38 do udziału w pracach Komitetu ",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-01-23_035_000",
+              "session": "2025-01-23",
+              "topic": "23d. Rozpatrzenie projektu uchwały w sprawie uznania „Planu adaptacji Miasta Katowice do 39 zmian klimatu do roku 2030” ",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-04-28_027_000",
+              "session": "2025-04-28",
+              "topic": "34. Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie powołania Komisji 28 Rewizyjnej Rady Miasta Katowice or",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-04-28_028_000",
+              "session": "2025-04-28",
+              "topic": "35. Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie powołania Komisji 29 Skarg, Wniosków i Petycji Rady Mia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-04-28_029_000",
+              "session": "2025-04-28",
+              "topic": "36. Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie ustalenia składów 30 osobowych komisji stałych Rady Mia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-04-28_030_000",
+              "session": "2025-04-28",
+              "topic": "37. Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie wyboru 31 przewodniczących i wiceprzewodniczących stały",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-04-28_032_000",
+              "session": "2025-04-28",
+              "topic": "38a. Rozpatrzenie projektu uchwały w sprawie przekazania do Wojewódzkiego Sądu Administracyjnego w Gliwicach skargi Pańs",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-04-28_033_000",
+              "session": "2025-04-28",
+              "topic": "39. Rozpatrzenie projektu uchwały w sprawie rozpatrzenia skargi dotyczącej nałożenia 34 opłat dodatkowych za postój poja",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-05-29_003_000",
+              "session": "2025-05-29",
+              "topic": "5. Zmiany w porządku obrad. Dopisanie punktu 17a. Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie ustalenia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-05-29_006_000",
+              "session": "2025-05-29",
+              "topic": "5. Wniosek formalny o zdjęcie z obrad pkt 16",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2025-05-29_007_000",
+              "session": "2025-05-29",
+              "topic": "5. Wniosek formalny o zdjęcie z obrad pkt 17",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2025-05-29_015_000",
+              "session": "2025-05-29",
+              "topic": "16. Rozpatrzenie projektu uchwały w sprawie zmian budżetu miasta Katowice na 2025 rok 16 (DS-323/25).",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-05-29_016_000",
+              "session": "2025-05-29",
+              "topic": "17. Rozpatrzenie projektu uchwały w sprawie zmian w Wieloletniej Prognozie Finansowej 17 miasta Katowice na lata 2025-20",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-05-29_020_000",
+              "session": "2025-05-29",
+              "topic": "18. Rozpatrzenie projektu uchwały w sprawie rozpatrzenia skargi dotyczącej nałożenia 21 opłaty dodatkowej za postój poja",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-06-26_020_000",
+              "session": "2025-06-26",
+              "topic": "22. Rozpatrzenie projektu uchwały w sprawie zmian budżetu oraz w budżecie miasta 21 Katowice na 2025 rok (DS 345/25)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-06-26_021_000",
+              "session": "2025-06-26",
+              "topic": "23. Rozpatrzenie projektu uchwały w sprawie zmian w WPF miasta Katowice na lata 2025- 22 2050 (DS 346/25)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-07-24_013_000",
+              "session": "2025-07-24",
+              "topic": "13. Rozpatrzenie projektu uchwały w sprawie aktualizacji założeń do planu zaopatrzenia w 15 ciepło, energię elektryczną ",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-09-25_030_000",
+              "session": "2025-09-25",
+              "topic": "32. Rozpatrzenie projektu uchwały w sprawie rozpatrzenia petycji dotyczącej 31 wprowadzenia zmian w uchwałach Rady Miast",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-09-25_031_000",
+              "session": "2025-09-25",
+              "topic": "33. Rozpatrzenie projektu uchwały w sprawie rozpatrzenia petycji dotyczącej 32 wprowadzenia zmian w uchwałach Rady Miast",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-10-23_030_000",
+              "session": "2025-10-23",
+              "topic": "22d . Rozpatrzenie skarg: dotyczącej nałożenia opłat dodatkowych za postój pojazdu w 31 Strefach Płatnego Parkowania mia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-12-18_007_000",
+              "session": "2025-12-18",
+              "topic": "6a. Głosowanie nad poprawką do projektu uchwały. Wniosek Pana Radnego Leszka 8 Piechoty.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2025-12-18_009_000",
+              "session": "2025-12-18",
+              "topic": "7. Poprawka do projektu uchwały wniesiona przez Radnego Leszka Piechotę.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-12-18_010_000",
+              "session": "2025-12-18",
+              "topic": "7. Poprawka 2 do projektu uchwały wniesiona przez Radnego Leszka Piechotę.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-12-18_011_000",
+              "session": "2025-12-18",
+              "topic": "7. Rozpatrzenie projektu uchwały w sprawie zatwierdzenia planów pracy komisji stałych 12 Rady Miasta Katowice na 2026 ro",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-12-18_015_000",
+              "session": "2025-12-18",
+              "topic": "10. Rozpatrzenie projektu uchwały w sprawie uchwalenia budżetu miasta Katowice na 2026 16 rok (DS-449/25).",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-12-18_016_000",
+              "session": "2025-12-18",
+              "topic": "11. Rozpatrzenie projektu uchwały w sprawie przyjęcia \"Programu zadań społecznych i 17 gospodarczych miasta Katowice na ",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-03-26_017_000",
+              "session": "2026-03-26",
+              "topic": "22. Rozpatrzenie projektu uchwały w sprawie zmian budżetu i w budżecie miasta Katowice 18 na 2026 rok oraz zmiany uchwał",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-03-26_019_000",
+              "session": "2026-03-26",
+              "topic": "23. Rozpatrzenie projektu uchwały w sprawie zmian w Wieloletniej Prognozie Finansowej 20 miasta Katowice na lata 2026-20",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
             }
           ],
           "has_voting_data": true,
@@ -1172,6 +1375,188 @@
               "vote_id": "2025-06-26_008_000",
               "session": "2025-06-26",
               "topic": "11a. Rozpatrzenie projektu uchwały w sprawie rozpatrzenia i zatwierdzenia sprawozdania 9 finansowego miasta Katowice za ",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-06-26_009_000",
+              "session": "2025-06-26",
+              "topic": "11b. Rozpatrzenie projektu uchwały w sprawie udzielenia Prezydentowi Miasta Katowice 10 absolutorium z tytułu wykonania ",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-06-26_010_000",
+              "session": "2025-06-26",
+              "topic": "12. Rozpatrzenie projektu uchwały w sprawie ustalenia kierunków działania dla Miasta 11 Katowice w zakresie wykorzystani",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2025-07-24_004_000",
+              "session": "2025-07-24",
+              "topic": "5. Wniosek o przerw ę w obradach",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-10-23_005_000",
+              "session": "2025-10-23",
+              "topic": "5. Wniosek formalny o wprowadzenie punktu dot. rozpatrzenia projektu uchwały w sprawie 6 zarządzenia referendum lokalneg",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-10-23_010_000",
+              "session": "2025-10-23",
+              "topic": "14. Rozpatrzenie projektu uchwały w sprawie określenia wysokości stawek podatku od 11 nieruchomości na rok 2026 obowiązu",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-11-20_013_000",
+              "session": "2025-11-20",
+              "topic": "15. Rozpatrzenie projektu uchwały w sprawie określenia wysokości stawek podatku od 14 środków transportowych na rok 2026",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-11-20_020_000",
+              "session": "2025-11-20",
+              "topic": "19. Rozpatrzenie projektu uchwały w sprawie ustalenia lokalizacji inwestycji mieszkaniowej 22 w rejonie ulic Bonifraters",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2025-11-20_021_000",
+              "session": "2025-11-20",
+              "topic": "20. Rozpatrzenie projektu uchwały w sprawie ustalenia lokalizacji inwestycji mieszkaniowej 23 przy ulicy Nadgórników w K",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2025-12-18_012_000",
+              "session": "2025-12-18",
+              "topic": "7. Wniosek formalny: dot reasumpcji głosowania Piechota Leszek",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2025-12-18_013_000",
+              "session": "2025-12-18",
+              "topic": "9. Rozpatrzenie projektu uchwały w sprawie uchwalenia Wieloletniej Prognozy Finansowej 14 miasta Katowice na lata 2026 -",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-12-18_015_000",
+              "session": "2025-12-18",
+              "topic": "10. Rozpatrzenie projektu uchwały w sprawie uchwalenia budżetu miasta Katowice na 2026 16 rok (DS-449/25).",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-12-18_016_000",
+              "session": "2025-12-18",
+              "topic": "11. Rozpatrzenie projektu uchwały w sprawie przyjęcia \"Programu zadań społecznych i 17 gospodarczych miasta Katowice na ",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-12-18_017_000",
+              "session": "2025-12-18",
+              "topic": "12. Rozpatrzenie projektu uchwały w sprawie zaciągnięcia długoterminowej pożyczki 18 bankowej (DS-471/25).",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2025-12-18_030_000",
+              "session": "2025-12-18",
+              "topic": "25. Rozpatrzenie projektu uchwały w sprawie przystąpienia do realizacji działań 33 dotyczących opracowania zasad funkcjo",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2025-12-18_046_000",
+              "session": "2025-12-18",
+              "topic": "28c. Rozpatrzenie skarg: Rozpatrzenie projektu uchwały w sprawie rozpatrzenia skargi na 49 działania Dyrektora XV Liceum",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-01-29_006_000",
+              "session": "2026-01-29",
+              "topic": "5. Wniosek formalny Radnego Leszka Piechoty o wniesienie punktu dotyczącego Apelu 7 Rady Miasta Katowice do Rządu Rzeczp",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-01-29_017_000",
+              "session": "2026-01-29",
+              "topic": "18. Rozpatrzenie projektu uchwały w sprawie zamiaru przekształcenia Przedszkola nr 22 w 19 Katowicach z siedzibą przy ul",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-01-29_018_000",
+              "session": "2026-01-29",
+              "topic": "19. Rozpatrzenie projektu uchwały w sprawie zamiaru likwidacji Przedszkola Nr 49 im. 21 Siedmiu Krasnoludków w Katowicac",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-01-29_019_000",
+              "session": "2026-01-29",
+              "topic": "20. Rozpatrzenie projektu uchwały w sprawie zamiaru likwidacji Przedszkola Nr 76 w 23 Katowicach z siedzibą przy ul. Koł",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-01-29_020_000",
+              "session": "2026-01-29",
+              "topic": "21. Rozpatrzenie projektu uchwały w sprawie zamiaru likwidacji Przedszkola Nr 88 w 24 Katowicach z siedzibą przy ul. Grz",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-01-29_022_000",
+              "session": "2026-01-29",
+              "topic": "23. Rozpatrzenie projektu uchwały w sprawie zamiaru likwidacji XI Liceum 26 Ogólnokształcącego w Katowicach z siedzibą p",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-01-29_023_000",
+              "session": "2026-01-29",
+              "topic": "24. Rozpatrzenie projektu uchwały w sprawie zamiaru przekształcenia XIV Liceum Ogólnokształcącego im. mjr. Henryka Sucha",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-03-26_016_000",
+              "session": "2026-03-26",
+              "topic": "22. wniosek formalny o wycofanie projektu uchwały z obrad i skierowanie do PMK",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-03-26_017_000",
+              "session": "2026-03-26",
+              "topic": "22. Rozpatrzenie projektu uchwały w sprawie zmian budżetu i w budżecie miasta Katowice 18 na 2026 rok oraz zmiany uchwał",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-03-26_018_000",
+              "session": "2026-03-26",
+              "topic": "23. Wniosek formalny o wycofanie projektu uchwały i zwrócenie do PMK",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-03-26_019_000",
+              "session": "2026-03-26",
+              "topic": "23. Rozpatrzenie projektu uchwały w sprawie zmian w Wieloletniej Prognozie Finansowej 20 miasta Katowice na lata 2026-20",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             }
