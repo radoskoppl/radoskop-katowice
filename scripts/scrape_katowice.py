@@ -316,7 +316,7 @@ def fetch_session_list(http_session, debug=False):
 # Step 2: For each session, find voting PDFs and parse them
 # ============================================================================
 
-def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None):
+def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None, parsed_dir=None):
     """Fetch a session page on BIP, find the IMIENNE WYNIKI GLOSOWAN document
     link, then fetch that document page and collect all voting PDF links.
     Download and parse each PDF.
@@ -394,10 +394,14 @@ def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None):
     # Download and parse each PDF
     votes = []
     for pdf_info in pdf_links:
-        vote = fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug, pdf_dir=pdf_dir)
+        vote = fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug, pdf_dir=pdf_dir, parsed_dir=parsed_dir)
         if vote:
             votes.append(vote)
-        time.sleep(DELAY * 0.3)
+        # Skip network sleep on full cache hit (parsed cache avoids HTTP entirely).
+        # DELAY is only needed when we actually hit BIP.
+        parsed_file = _parsed_cache_path(pdf_info["url"], parsed_dir)
+        if not (parsed_file and parsed_file.exists()):
+            time.sleep(DELAY * 0.3)
 
     return votes
 
@@ -442,15 +446,56 @@ def _pdf_cache_path(url, pdf_dir):
     return Path(pdf_dir) / f"{h}_{safe}"
 
 
-def fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug=False, pdf_dir=None):
-    """Download a single voting PDF and parse it. Uses disk cache if pdf_dir set."""
+# Version bump this when parse_vote_text or VOTE_PATTERN changes in a way
+# that should invalidate previously cached parsed results.
+PARSED_CACHE_VERSION = 1
+
+
+def _parsed_cache_path(url, parsed_dir):
+    """Return cache file path for a parsed vote JSON."""
+    if not parsed_dir:
+        return None
+    h = hashlib.md5(url.encode()).hexdigest()[:12]
+    return Path(parsed_dir) / f"{h}.json"
+
+
+def fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug=False, pdf_dir=None, parsed_dir=None):
+    """Download a single voting PDF and parse it.
+
+    Two caching layers (both optional):
+      1. parsed_dir: cached JSON with already-parsed {topic, counts, named_votes}.
+         Cache HIT here skips BOTH download AND pdfplumber parsing (the expensive step).
+      2. pdf_dir: cached raw PDF bytes. Cache HIT skips download only, pdfplumber
+         still runs. Used when parsed cache is cold or invalid.
+    """
     url = pdf_info["url"]
+    parsed_file = _parsed_cache_path(url, parsed_dir)
     cache_file = _pdf_cache_path(url, pdf_dir)
 
-    # Try disk cache first
+    # Layer 1: parsed-vote cache (skips pdfplumber entirely)
+    if parsed_file and parsed_file.exists() and parsed_file.stat().st_size > 0:
+        try:
+            with open(parsed_file, encoding="utf-8") as f:
+                cached = json.load(f)
+            if cached.get("_version") == PARSED_CACHE_VERSION and "named_votes" in cached:
+                if debug:
+                    print(f"      [DEBUG] PARSED CACHE HIT {parsed_file.name}")
+                return {
+                    "topic": cached["topic"],
+                    "counts": cached["counts"],
+                    "named_votes": cached["named_votes"],
+                }
+            else:
+                if debug:
+                    print(f"      [DEBUG] PARSED CACHE version mismatch, re-parsing")
+        except Exception as e:
+            if debug:
+                print(f"      [DEBUG] PARSED CACHE read error: {e}")
+
+    # Layer 2: PDF byte cache (skips download, pdfplumber still runs)
     if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
         if debug:
-            print(f"      [DEBUG] CACHE HIT {cache_file.name}")
+            print(f"      [DEBUG] PDF CACHE HIT {cache_file.name}")
         pdf_bytes = cache_file.read_bytes()
     else:
         if debug:
@@ -488,7 +533,26 @@ def fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug=False, 
     if not text:
         return None
 
-    return parse_vote_text(text, pdf_info, session_info, debug)
+    parsed = parse_vote_text(text, pdf_info, session_info, debug)
+
+    # Write parsed-vote cache on success
+    if parsed and parsed_file:
+        try:
+            parsed_file.parent.mkdir(parents=True, exist_ok=True)
+            payload = {
+                "_version": PARSED_CACHE_VERSION,
+                "_url": url,
+                "topic": parsed["topic"],
+                "counts": parsed["counts"],
+                "named_votes": parsed["named_votes"],
+            }
+            with open(parsed_file, "w", encoding="utf-8") as f:
+                json.dump(payload, f, ensure_ascii=False, separators=(",", ":"))
+        except Exception as e:
+            if debug:
+                print(f"      [DEBUG] PARSED CACHE write error: {e}")
+
+    return parsed
 
 
 def parse_vote_text(text, pdf_info, session_info, debug=False):
@@ -855,7 +919,7 @@ def build_profiles_json(output: dict, profiles_path: str):
 # Main
 # ============================================================================
 
-def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None):
+def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None, parsed_dir=None):
     """Glowna funkcja scrapowania."""
     http_session = requests.Session()
 
@@ -880,7 +944,7 @@ def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None
 
     for i, session_info in enumerate(session_list):
         print(f"  [{i+1}/{len(session_list)}] {session_info['date']}  {session_info.get('title', '')[:60]}")
-        session_votes = fetch_session_votes(http_session, session_info, debug=debug, pdf_dir=pdf_dir)
+        session_votes = fetch_session_votes(http_session, session_info, debug=debug, pdf_dir=pdf_dir, parsed_dir=parsed_dir)
 
         for idx, vote_detail in enumerate(session_votes):
             vote_id = f"{session_info['date']}_{idx:03d}_000"
@@ -1000,7 +1064,16 @@ def main():
         "--pdf-dir", default=None,
         help="Katalog cache PDF (pomija ponowne pobieranie)"
     )
+    parser.add_argument(
+        "--parsed-dir", default=None,
+        help="Katalog cache sparsowanych glosowan JSON (pomija pdfplumber). "
+             "Jesli nie podano, a pdf-dir jest ustawiony, domyslnie {pdf-dir}/../cache/parsed."
+    )
     args = parser.parse_args()
+
+    parsed_dir = args.parsed_dir
+    if parsed_dir is None and args.pdf_dir:
+        parsed_dir = str(Path(args.pdf_dir).parent / "cache" / "parsed")
 
     scrape(
         output_path=args.output,
@@ -1008,6 +1081,7 @@ def main():
         debug=args.debug,
         max_sessions=args.max_sessions,
         pdf_dir=args.pdf_dir,
+        parsed_dir=parsed_dir,
     )
 
 

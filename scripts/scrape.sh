@@ -25,6 +25,8 @@ echo "[4/4] Uruchamianie scraperow..."
 python3 "$SCRIPT_DIR/scrape_katowice.py" \
   --output "$PROJECT_DIR/docs/data.json" \
   --profiles "$PROJECT_DIR/docs/profiles.json" \
+  --pdf-dir "$PROJECT_DIR/pdfs" \
+  --parsed-dir "$PROJECT_DIR/cache/parsed" \
   "$@"
 
 python3 "$SCRIPT_DIR/scrape_interpelacje.py" \
